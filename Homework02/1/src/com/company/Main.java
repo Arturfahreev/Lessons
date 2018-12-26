@@ -3,7 +3,7 @@ import java.util.Scanner;
 //Пользователь вводит сначала n (кол-во чисел),
 // затем последовательно n чисел. Вывести максимальное по модулю число
 //Test1
-public class Homework02Task01 {
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int k = sc.nextInt();
