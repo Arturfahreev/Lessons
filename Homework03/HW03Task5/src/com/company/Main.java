@@ -22,7 +22,7 @@ public class Main {
         String str = ""; //инициализация строки, в которую будут записываться числа
 
         for (int i = 0; i < n; i++) {
-            str += arr [i];
+            str = str + arr [i];
         }
 
         System.out.println("Ваше число:" + " " + Integer.parseInt(str));
