@@ -1,4 +1,4 @@
-public class Task28Factorial {
+public class Test28Factorial {
     public static void main(String[] args) {
         int numberFact = factorialFor(7);
         System.out.println("For: " + numberFact);
