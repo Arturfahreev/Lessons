@@ -1,10 +1,11 @@
 import java.util.Scanner;
+//Проверяет является ли вводимая строка Палиндромом
 
 public class Test02Palindrom {
 
-    Scanner sc = new Scanner(System.in);
-    String str = sc.nextLine();
-    char[] arr = Palindrom(str);
+    Scanner sc = new Scanner(System.in); //Вызываем сканер
+    String str = sc.nextLine(); //считываем строку
+    char[] arr = Palindrom(str); //помещаем стрроку в массив char
 
     static char[] Palindrom(String str) {
         char[] arr = str.toCharArray();
