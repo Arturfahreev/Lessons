@@ -1,11 +1,6 @@
-package com.company;
-//Фахреев А.Р. гр.11-806, Вариант 1, задание 2
-//Не совсем понял как решать эту задачу через рекурсию и булевую.
-//Дается тяжко такого рода задачи, пытаюсь разобраться.
-//Можно позже спустя какое-то количество занятий, снова попробовать написать эту контрольную?
 import java.util.Scanner;
 
-public class ClassTest02 {
+public class Test02Palindrom {
 
     Scanner sc = new Scanner(System.in);
     String str = sc.nextLine();

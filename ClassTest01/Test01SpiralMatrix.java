@@ -1,9 +1,5 @@
-package com.company;
-//Вариант 1, задание 1
-//Написал код как пока получается, данные темы пока не до конца понял, особенно как идти по циклам в матрицах, как правильно вызывать процедуры
-// Пытаюсь разобраться, очень быстро материал был пройден
 import java.util.Scanner;
-public class ClassTest01 {
+public class Test01SpiralMatrix {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Введение число N: ");
