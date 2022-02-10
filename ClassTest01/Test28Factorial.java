@@ -4,8 +4,8 @@ public class Test28Factorial {
         System.out.println("For: " + numberFact);
         int numberWhile = factorialWhile (8);
         System.out.println("While: " + numberWhile);
-        int numberRecursia = factorialRecursia(9);
-        System.out.println("Recursia: " + numberRecursia);
+        int numberRecursia = factorialRecursion(9);
+        System.out.println("Recursion: " + numberRecursia);
     }
     public static int factorialFor (int number) {
         int result = 1;
@@ -25,11 +25,11 @@ public class Test28Factorial {
 
     }
     //F(3) = 3 * 2 * 1
-    public static int factorialRecursia (int number) {
+    public static int factorialRecursion (int number) {
         if (number == 1) {
             return 1;
         }
-        return number * factorialRecursia(number - 1);
+        return number * factorialRecursion(number - 1);
     }
 
 }

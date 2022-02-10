@@ -8,8 +8,11 @@ public class Test22PalindromeIs {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
 
-        if (task(0, str)) System.out.println("YES");
-        else System.out.println("NO");
+        if (task(0, str)) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
     }
 
     public static boolean task (int index, String str) {
