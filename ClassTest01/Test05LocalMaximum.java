@@ -6,21 +6,21 @@ import java.util.Scanner;
  public class Test05LocalMaximum {
     public static void main(String[] args) {
        System.out.println("Локальных максимумов (метод OneFor): " + localMaximumWithOneFor(arrayOfIntegerBuilder(scannerInteger())));
-        System.out.println("Локальных максимумов (метод TwoFor): " + localMaximumWithTwoFor(arrayOfIntegerBuilder(scannerInteger())));
+       System.out.println("Локальных максимумов (метод TwoFor): " + localMaximumWithTwoFor(arrayOfIntegerBuilder(scannerInteger())));
     }
-    public static int [] arrayOfIntegerBuilder (int n) {
+    public static int [] arrayOfIntegerBuilder (int n) { //метод создаем массив из int
         int [] numbers = new int[n];
         return numbers;
     }
 
-    public static int scannerInteger () {
+    public static int scannerInteger () { //метод считывает int из сканера
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите число (int): ");
         int n = sc.nextInt();
         return n;
     }
 
-    public static int localMaximumWithOneFor (int[] numbers) {
+    public static int localMaximumWithOneFor (int[] numbers) { //находит локальный максимум с одним for
         Scanner sc = new Scanner(System.in);
         int count = 0;
         System.out.println("Введите " + numbers.length + " элементов: ");
@@ -33,7 +33,7 @@ import java.util.Scanner;
         return count;
     }
 
-    public static int localMaximumWithTwoFor (int[] numbers) {
+    public static int localMaximumWithTwoFor (int[] numbers) { //находит локальный максимум с двумя for
         Scanner sc = new Scanner(System.in);
         int count = 0;
         System.out.println("Введите " + numbers.length + " элементов: ");
