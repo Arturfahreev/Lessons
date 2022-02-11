@@ -5,17 +5,17 @@ import java.util.Scanner;
  * Подсчитать, сколько локальных максимумов во введенном с клавиатуры массиве.
  */
 
- public class Test05LocalMaximum {
+ public class Test01LocalMaxInArr {
     public static void main(String[] args) {
-       System.out.println("Локальных максимумов (метод OneFor): " + localMaximumWithOneFor(arrayOfIntegerBuilder(scannerInteger())));
-       System.out.println("Локальных максимумов (метод TwoFor): " + localMaximumWithTwoFor(arrayOfIntegerBuilder(scannerInteger())));
+       System.out.println("Локальных максимумов (метод OneFor): " + localMaximumWithOneFor(arrIntBuilder(scanInt())));
+       System.out.println("Локальных максимумов (метод TwoFor): " + localMaximumWithTwoFor(arrIntBuilder(scanInt())));
     }
-    public static int [] arrayOfIntegerBuilder (int n) { //метод создаем массив из int
+    public static int [] arrIntBuilder (int n) { //метод создаем массив из int
         int [] numbers = new int[n];
         return numbers;
     }
 
-    public static int scannerInteger () { //метод считывает int из сканера
+    public static int scanInt () { //метод считывает int из сканера
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите число (int): ");
         int n = sc.nextInt();

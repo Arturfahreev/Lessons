@@ -1,5 +1,4 @@
 package tests;
-
 import java.util.Scanner;
 
 public class Test03Average {

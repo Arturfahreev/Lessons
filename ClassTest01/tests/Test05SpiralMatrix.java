@@ -1,7 +1,7 @@
 package tests;
 
 import java.util.Scanner;
-public class Test01SpiralMatrix {
+public class Test05SpiralMatrix {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Введение число N: ");
