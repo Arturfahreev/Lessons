@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Test05SpiralMatrix {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Введение число N: ");
+        System.out.println("Введите число N: ");
         int n = sc.nextInt();
         System.out.println("Введите числа(в количестве n*n): ");
         int[] arr = new int[n * n];

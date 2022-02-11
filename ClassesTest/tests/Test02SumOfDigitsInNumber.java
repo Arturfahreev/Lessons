@@ -2,13 +2,16 @@ package tests;
 
 //Пользователь вводит n, подсчитать и вывести сумму цифр числа n.
 
+import java.util.Scanner;
+
 public class Test02SumOfDigitsInNumber {
     public static void main(String[] args) {
-        int n = Test01.scanInt();
-        System.out.println(sumOfDigitsInNumber(n));
+        System.out.println(sumOfDigitsInNumber());
     }
 
-    public static int sumOfDigitsInNumber (int n) {
+    public static int sumOfDigitsInNumber () {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
         int sum = 0;
         for (int i = 0; n > 0 ; i++) {
             sum += n % 10;
