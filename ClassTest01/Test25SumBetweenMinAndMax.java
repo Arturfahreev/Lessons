@@ -1,4 +1,4 @@
-//Находится сумма числе между минимальным и максимальным в массиве
+//Находится сумма чисел между минимальным и максимальным в массиве
 public class Test25SumBetweenMinAndMax {
     public static void main(String[] args) {
         //              0  1  2  3  4   5   6  7

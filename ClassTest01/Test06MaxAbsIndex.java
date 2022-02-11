@@ -7,7 +7,7 @@ public class Test06MaxAbsIndex {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] numbers = new int[n];
-        int max = 0, index = 0;
+        int max = Integer.MIN_VALUE, index = 0;
 
         for (int i = 0; i < n; i++){
             numbers[i] = sc.nextInt();
