@@ -1,5 +1,5 @@
 import java.util.Scanner;
-/**Пользователь вводит сначала n (кол-во чисел), затем последовательно n чисел.
+/** Пользователь вводит сначала n (кол-во чисел), затем последовательно n чисел.
 Вывести два наибольших числа (первым вывести максимальное, вторым - следующее по величине)
 */
 public class Test30TwoMaxNumber {
@@ -7,15 +7,15 @@ public class Test30TwoMaxNumber {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] array = new int[n];
-        twoMaxNumber(n, array);
+        twoMaxNumber(array);
     }
-    public static void twoMaxNumber (int n, int[] array) {
+    public static void twoMaxNumber (int[] array) {
         Scanner sc = new Scanner(System.in);
 
         int max1 = Integer.MIN_VALUE;
         int max2 = Integer.MIN_VALUE;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < array.length; i++) {
             array[i] = sc.nextInt();
             if ( array[i] > max1 ) {
                 max2 = max1;
