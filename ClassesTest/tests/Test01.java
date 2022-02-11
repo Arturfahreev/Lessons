@@ -5,21 +5,38 @@ import java.util.Scanner;
  * Подсчитать, сколько локальных максимумов во введенном с клавиатуры массиве.
  */
 
- public class Test01LocalMaxInArr {
+ public class Test01 {
     public static void main(String[] args) {
        System.out.println("Локальных максимумов (метод OneFor): " + localMaximumWithOneFor(arrIntBuilder(scanInt())));
        System.out.println("Локальных максимумов (метод TwoFor): " + localMaximumWithTwoFor(arrIntBuilder(scanInt())));
-    }
-    public static int [] arrIntBuilder (int n) { //метод создаем массив из int
-        int [] numbers = new int[n];
-        return numbers;
     }
 
     public static int scanInt () { //метод считывает int из сканера
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите число (int): ");
-        int n = sc.nextInt();
-        return n;
+        return sc.nextInt();
+    }
+
+    public static int [] arrIntBuilder (int n) { //метод создает массив из int элементов
+        return new int[n];
+    }
+
+    public static int[] arrFillScan (int n) {
+        Scanner sc = new Scanner(System.in);
+        int[] numbers = new int[n];
+        System.out.println("Введите " + numbers.length + " элементов: ");
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = sc.nextInt();
+        }
+        return numbers;
+    }
+
+    public static String arrPrint (int[] numbers) {
+        String str = "";
+        for (int i = 0; i < numbers.length; i++) {
+            str += numbers[i] + " ";
+        }
+        return str;
     }
 
     public static int localMaximumWithOneFor (int[] numbers) { //находит локальный максимум с одним for
