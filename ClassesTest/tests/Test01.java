@@ -21,7 +21,7 @@ import java.util.Scanner;
         return new int[n];
     }
 
-    public static int[] arrFillScan (int n) {
+    public static int[] arrFillScan (int n) { //метод создает массив и заполняет его из сканера
         Scanner sc = new Scanner(System.in);
         int[] numbers = new int[n];
         System.out.println("Введите " + numbers.length + " элементов: ");
@@ -31,7 +31,7 @@ import java.util.Scanner;
         return numbers;
     }
 
-    public static String arrPrint (int[] numbers) {
+    public static String arrPrint (int[] numbers) { //метод выдает элементы массива в строке
         String str = "";
         for (int i = 0; i < numbers.length; i++) {
             str += numbers[i] + " ";
