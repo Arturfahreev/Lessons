@@ -3,7 +3,7 @@ package tests;
 import java.util.Scanner;
 //Проверяет является ли вводимая строка Палиндромом
 
-public class Test32Palindrom {
+public class Test20Palindrom {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in); //Вызываем сканер

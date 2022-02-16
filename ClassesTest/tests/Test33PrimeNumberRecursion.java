@@ -2,14 +2,23 @@ package tests;
 
 import java.util.Scanner;
 
-public class Test20PrimeNumber {
+/**
+ * Проверить является ли число простым через рекурсию.
+ */
+
+public class Test33PrimeNumberRecursion {
+
     public static boolean flag = true;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        if (task(2, n)) System.out.println("YES");
-            else System.out.println("NO");
+
+        if (task(2, n)) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
     }
     public static boolean task (int divider, int a) {
         if (a > 1) {
@@ -17,8 +26,7 @@ public class Test20PrimeNumber {
                 if (a % divider == 0) {
                     System.out.println(divider);
                     flag = false;
-                }
-                else {
+                } else {
                     task(divider += 1, a);
                 }
             }
