@@ -13,6 +13,6 @@ public class Animal implements Eatable {
     }
 
     public void eat () {
-        System.out.println(str + " is eating");
+        System.out.println(Animal.class.getName() + " " + str + " is eating");
     }
 }

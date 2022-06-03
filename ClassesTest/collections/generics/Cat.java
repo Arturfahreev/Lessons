@@ -6,5 +6,14 @@ public class Cat extends Animal {
         super(str);
     }
 
+    @Override
+    public void eat() {
+        System.out.println(Cat.class.getName() + " " + str + " is eating");
+    }
+
+    public void jump () {
+        System.out.println("Jumping");
+    }
+
 
 }

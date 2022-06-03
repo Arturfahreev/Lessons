@@ -22,9 +22,14 @@ public class GenericMain {
         cat3.printT();
 
         ArrayList<Animal> listT = new ArrayList<>();
-        listT.add(dog1);
+        listT.add(cat1);
+
+        animal1.eat();
+        cat1.eat();
+        cat1.jump();
 
         Animal newCat = listT.get(0);
+        newCat.eat();
 
     }
 }

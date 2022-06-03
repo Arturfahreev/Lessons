@@ -1,13 +1,17 @@
 package collections.projectQueue;
 
-public class Queue<T extends Number> implements InterfaceQueue<T>{
+import java.util.Random;
+
+public class Queue<T extends Number> implements InterfaceQueue<T> {
     T[] object;
-    int putLock, getLock;
+    private int putLock, getLock;
+    private int size;
 
     public Queue (T[] object) {
         this.object = object;
         putLock = getLock = 0;
     }
+
 
     @Override
     public void put(T o) throws QueueFullException {
@@ -15,8 +19,7 @@ public class Queue<T extends Number> implements InterfaceQueue<T>{
             throw new QueueFullException(object.length);
         }
         object[putLock++] = o;
-        System.out.println("Класс: " + object.getClass().getName());
-
+        System.out.print("Класс: " + object.getClass().getName() + " ");
     }
 
     @Override
@@ -26,12 +29,13 @@ public class Queue<T extends Number> implements InterfaceQueue<T>{
         }
         return object[getLock++];
     }
-// */
+
     public void printGet () {
         try {
             for (int i = 0; i < object.length; i++) {
-                T n = get();
+                T n = this.get();
                 System.out.println("Получен " + n + " " + object.getClass().getName());
+                if (i == object.length - 1) System.out.println();
             }
 
         } catch (QueueEmptyException exc) {
@@ -39,6 +43,4 @@ public class Queue<T extends Number> implements InterfaceQueue<T>{
 
         }
     }
-
- // */
 }
