@@ -15,11 +15,14 @@ public class streamExample1 {
         for (int i = 0; i < 100; i++) {
             listInt.add(i);
         }
-        List<Integer> collect = listInt.stream()
+        listInt.stream()
                 .filter(value -> value % 2 != 0)
                 .filter(value -> value % 5 == 0)
-                .collect(Collectors.toList());
-        collect.forEach(System.out::println);
+                Integer.
+                .map (String::valueOf)
+
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
 
     }
 }
