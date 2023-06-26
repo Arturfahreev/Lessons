@@ -12,15 +12,14 @@ import java.util.stream.Stream;
 public class streamExample1 {
     public static void main(String[] args) {
         List<Integer> listInt = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             listInt.add(i);
         }
         listInt.stream()
                 .filter(value -> value % 2 != 0)
                 .filter(value -> value % 5 == 0)
-                Integer.
                 .map (String::valueOf)
-
+                .filter(string -> string.length() > 2)
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
 
