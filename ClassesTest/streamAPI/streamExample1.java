@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Дан список чисел. Отсортировать числа только нечетные кратные 5, чья длина цифр больше 2.
+ * Дан список чисел. Найти среднее всех чисел нечетных кратных 5, чья длина цифр больше 2.
  */
 
 public class streamExample1 {
@@ -20,8 +20,9 @@ public class streamExample1 {
                 .filter(value -> value % 5 == 0)
                 .map (String::valueOf)
                 .filter(string -> string.length() > 2)
-                .collect(Collectors.toList())
-                .forEach(System.out::println);
-
+                .map(Integer::valueOf)
+                .mapToInt(Integer::intValue)
+                .average()
+                .ifPresent(System.out::println);
     }
 }
