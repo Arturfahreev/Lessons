@@ -14,5 +14,10 @@ public class StreamTask2 {
             list.add("String" + i);
             list.add("String" + i);
         }
+        long count = list.stream()
+                .distinct()
+                .filter(string -> string.length() > 8)
+                .count();
+        System.out.println(count);
     }
 }
