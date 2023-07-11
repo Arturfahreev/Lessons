@@ -22,7 +22,7 @@ public class StreamTask5 {
                 .max(Comparator.comparing(Person::getAge))
                 .ifPresent(System.out::println);
 
-        
+
     }
 }
 
