@@ -15,7 +15,5 @@ public class StreamTask4 {
         for (int i = 0; i < 10; i++) {
             list.add(i);
         }
-        list.stream()
-
     }
 }
