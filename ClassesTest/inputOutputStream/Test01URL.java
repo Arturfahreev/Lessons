@@ -13,6 +13,5 @@ public class Test01URL {
         String str = new String(arr);
         System.out.println(str);
 
-
     }
 }
