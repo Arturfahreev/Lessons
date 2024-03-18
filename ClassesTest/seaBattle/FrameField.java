@@ -227,7 +227,7 @@ class ColorCheckFrame extends JFrame implements KeyListener {
                     try {
                         Thread.sleep(250);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e); 
+                        throw new RuntimeException(e);
                     }
                 }
             }
