@@ -31,6 +31,7 @@ public class Swing7 implements ActionListener {
         jFrame.getContentPane().add(BorderLayout.NORTH, jPanel);
         jFrame.getContentPane().add(BorderLayout.SOUTH, jPanel2);
         jFrame.setResizable(false);
+        //jFrame.setLayout(new FlowLayout());
 
         jFrame.setVisible(true);
     }

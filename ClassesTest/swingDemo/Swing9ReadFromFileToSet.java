@@ -59,6 +59,7 @@ public class Swing9ReadFromFileToSet {
                     treeSet.add(str);
                     totalTreeSet += (System.currentTimeMillis() - currentTime);
 
+                    treeMap.put(str, treeMap.getOrDefault(str, 0) + 1);
                 }
             }
         }
@@ -67,6 +68,8 @@ public class Swing9ReadFromFileToSet {
         System.out.println("Total TreeSet time: " + totalTreeSet);
         System.out.println("Count of set members HashSet: " + set.size());
         System.out.println("Count of set members TreeSet: " + treeSet.size());
+        System.out.println("Count of keys in TreeMap: " + treeMap.size());
+
         System.out.println();
 
         Iterator<String> iter = set.iterator();
