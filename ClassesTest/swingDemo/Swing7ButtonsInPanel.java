@@ -1,16 +1,13 @@
 package swingDemo;
-import java.awt.*;
 import java.awt.event.*;
-import javax.swing.text.Utilities;
-import java.io.*;
 import javax.swing.*;
 import java.awt.BorderLayout; // подключаем BorderLayout
 
-public class Swing7 implements ActionListener {
+public class Swing7ButtonsInPanel implements ActionListener {
 
     JFrame jFrame;
 
-    Swing7() {
+    Swing7ButtonsInPanel() {
         jFrame = new JFrame("Test window");
         JPanel jPanel = new JPanel();
         JPanel jPanel2 = new JPanel();
@@ -47,7 +44,7 @@ public class Swing7 implements ActionListener {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                new Swing7();
+                new Swing7ButtonsInPanel();
             }
         };
 
