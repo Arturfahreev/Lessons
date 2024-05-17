@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * programm shows different in time between calculating in threads and in main thread only
+ * program shows different in time between calculating in threads and in main thread only
  */
 
 public class TestThread {
