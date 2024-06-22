@@ -2,6 +2,10 @@ package collections.bitSet;
 
 import java.util.BitSet;
 
+/**
+ * Program calculates prime numbers
+ */
+
 public class primeNumbers {
     public static void main(String[] args) {
         int numbers = 2_000_000_000;
