@@ -26,11 +26,11 @@ public class ArrayListTest {
         List<Integer> listInt = new ArrayList<>();
         listInt.add(5);
         listInt.add(18);
-        listInt.add(52);
         listInt.add(98);
         listInt.add(99);
         listInt.add(100);
         listInt.add(17);
+        listInt.add(18);
         listInt.add(33);
         listInt.add(100);
         listInt.add(54);
