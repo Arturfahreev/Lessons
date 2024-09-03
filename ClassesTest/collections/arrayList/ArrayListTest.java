@@ -29,6 +29,7 @@ public class ArrayListTest {
         listInt.add(52);
         listInt.add(98);
         listInt.add(99);
+        listInt.add(100);
         listInt.add(17);
         listInt.add(33);
         listInt.add(100);
