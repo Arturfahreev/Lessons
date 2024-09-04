@@ -32,6 +32,7 @@ public class ArrayListTest {
         listInt.add(17);
         listInt.add(18);
         listInt.add(33);
+        listInt.add(34);
         listInt.add(100);
         listInt.add(54);
         Collections.sort(listInt);
