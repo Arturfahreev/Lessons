@@ -15,10 +15,10 @@ public class Counter {
         count--;
     }
 
-    public synchronized void increment() {
-        //lock.lock();
+    public void increment() {
+        lock.lock();
         count++;
-        //lock.unlock();
+        lock.unlock();
     }
 
     public void setCount(int count) {
