@@ -1,6 +1,6 @@
 package multithreading.queueCashbox;
 /**
- * Creates 2 cashboxes and many threads(buyers)< which working with common resource
+ * Creates 2 cashboxes and many threads(buyers), which working with common resource
  */
 
 import java.util.ArrayDeque;
