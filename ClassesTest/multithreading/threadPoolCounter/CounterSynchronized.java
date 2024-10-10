@@ -1,11 +1,10 @@
-package multithreading.threadCounter;
+package multithreading.threadPoolCounter;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Counter {
+public class CounterSynchronized implements Counter {
     private int count;
-    Lock lock = new ReentrantLock();
 
     public int getCount() {
         return count;
@@ -15,14 +14,12 @@ public class Counter {
         count--;
     }
 
-    public void increment() {
-        lock.lock();
+    public synchronized void increment() {
         count++;
-        lock.unlock();
     }
 
     public void setCount(int count) {
         this.count = count;
     }
-}
 
+}
