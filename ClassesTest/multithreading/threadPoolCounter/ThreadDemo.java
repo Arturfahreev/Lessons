@@ -16,9 +16,9 @@ public class ThreadDemo {
         CounterSynchronized counterSynchronized = new CounterSynchronized();
         CounterSynchronized counterSynchronized2 = new CounterSynchronized();
 
-//        threadPoolExecutor(counterLock);
-//        threadPoolExecutor(counterSynchronized);
-//        threadStart(counterLock2);
+        threadPoolExecutor(counterLock);
+        threadPoolExecutor(counterSynchronized);
+        threadStart(counterLock2);
         threadStart(counterSynchronized2);
     }
 
