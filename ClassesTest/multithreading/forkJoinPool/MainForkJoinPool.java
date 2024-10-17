@@ -16,7 +16,7 @@ public class MainForkJoinPool {
     public static void main(String[] args) {
         createArray();
         long start = System.currentTimeMillis();
-        MyRecursiveTask myRecursiveTask = new MyRecursiveTask(array);
+        MyRecursiveTask myRecursiveTask = new MyRecursiveTask(0, array.length);
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         Long result = forkJoinPool.invoke(myRecursiveTask);
         System.out.printf("Time: %,d%n", (System.currentTimeMillis() - start));
@@ -31,25 +31,32 @@ public class MainForkJoinPool {
             array[i] = i;
         }
     }
-}
 
-class MyRecursiveTask extends RecursiveTask<Long> {
-    int[] array;
 
-    public MyRecursiveTask(int[] array) {
-        this.array = array;
-    }
+    static class MyRecursiveTask extends RecursiveTask<Long> {
+        int from;
+        int to;
 
-    @Override
-    protected Long compute() {
-        if (array.length <= MainForkJoinPool.part) {
-            MainForkJoinPool.setThread.add(Thread.currentThread());
-            return Arrays.stream(array).asLongStream().sum();
+        public MyRecursiveTask(int from, int to) {
+            this.from = from;
+            this.to = to;
         }
-        MyRecursiveTask task1 = new MyRecursiveTask(Arrays.copyOfRange(array, 0, array.length / 2));
-        MyRecursiveTask task2 = new MyRecursiveTask(Arrays.copyOfRange(array, array.length / 2, array.length));
-        task1.fork();
-        task2.fork();
-        return task1.join() + task2.join();
+
+        @Override
+        protected Long compute() {
+            if ((to - from) <= MainForkJoinPool.part) {
+                MainForkJoinPool.setThread.add(Thread.currentThread());
+                long sum = 0L;
+                for (int i = from; i < to; i++) {
+                    sum += array[i];
+                }
+                return sum;
+            }
+            MyRecursiveTask task1 = new MyRecursiveTask(from, ((to - from) / 2) + from);
+            MyRecursiveTask task2 = new MyRecursiveTask(((to - from) / 2) + from, to);
+            task1.fork();
+            task2.fork();
+            return task1.join() + task2.join();
+        }
     }
 }
