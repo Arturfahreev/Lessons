@@ -1,11 +1,19 @@
 package multithreading.forkJoinPool;
 
+/**
+ * Fill in an array with int, then sum it members by many threads using analog of ForkJoinPool
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
 public class MainManyTreads {
-    public static int[] array = new int[1_000_000_000];
+    public static int[] array = new int[1_000];
+    // 4 999 999 950 000 000 (100_000_000) Time 51 (many) Time 62 (single)
+    //       499 999 500 000 (1_000_000) Time 25 (many) Time 28 (single)
+    //                   499 500 (1_000) Time 18 (many) Time 0 (single)
+
     public static int processors = Runtime.getRuntime().availableProcessors();
 
     private static List<Future<Long>> list = new ArrayList<>();
@@ -46,7 +54,7 @@ public class MainManyTreads {
             executorService.awaitTermination(1, TimeUnit.MINUTES);
         }
         System.out.println("Time " + (System.currentTimeMillis() - start));
-        System.out.println("Sum: " + result);
+        System.out.printf("Sum: %,d", result);
     }
 
     static class MyCallable implements Callable<Long> {
