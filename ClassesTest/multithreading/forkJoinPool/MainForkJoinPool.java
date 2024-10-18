@@ -1,28 +1,44 @@
 package multithreading.forkJoinPool;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.RecursiveTask;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class MainForkJoinPool {
     public static Set<Thread> setThread = new HashSet<>();
     public static int[] array = new int[100_000_000];
-    public static int part = array.length / (Runtime.getRuntime().availableProcessors());
+    private static Map<Integer, String> loadFactor = new TreeMap<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        int part = Runtime.getRuntime().availableProcessors();
+
         createArray();
-        long start = System.currentTimeMillis();
-        MyRecursiveTask myRecursiveTask = new MyRecursiveTask(0, array.length);
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        Long result = forkJoinPool.invoke(myRecursiveTask);
-        System.out.printf("Time: %,d%n", (System.currentTimeMillis() - start));
-        System.out.printf("Sum: %,d%n", result);
-        for (Thread thread : setThread) {
-            System.out.println(thread.getName());
+
+        ForkJoinPool forkJoinPool;
+        forkJoinPool = new ForkJoinPool(10);
+        MyRecursiveTask myRecursiveTask;
+
+        for (int i = 10; i < 100_000_000; i *= 10) {
+            //part = (Runtime.getRuntime().availableProcessors()) * i;
+            //int threshold = array.length / part ;
+            //System.out.printf("Part: %d Threshold: %,d%n", part, threshold);
+            System.out.printf("Threshold = %,d%n", i);
+            long start = System.currentTimeMillis();
+            myRecursiveTask = new MyRecursiveTask(0, array.length, i);
+            Long result = forkJoinPool.invoke(myRecursiveTask);
+            System.out.println(forkJoinPool.getParallelism() + " " + forkJoinPool.getPoolSize() + " " + forkJoinPool.getQueuedSubmissionCount());
+            long end = System.currentTimeMillis();
+            loadFactor.put(i, String.valueOf((end - start) + " Threads: " + setThread.size()));
+
+            //System.out.printf("Time: %,d%n", (end - start));
+            //System.out.printf("Sum: %,d%n", result);
+            //System.out.println("Number of threads: " + setThread.size());
+            //setThread.forEach(thread -> System.out.println(thread.getName()));
+            setThread.clear();
+
+        }
+        for (var entry : loadFactor.entrySet()) {
+            System.out.printf("Threshold %-10d Time - %-10s%n", entry.getKey(), entry.getValue());
         }
     }
 
@@ -32,28 +48,32 @@ public class MainForkJoinPool {
         }
     }
 
-
     static class MyRecursiveTask extends RecursiveTask<Long> {
         int from;
         int to;
+        int part;
 
-        public MyRecursiveTask(int from, int to) {
+        public MyRecursiveTask(int from, int to, int part) {
             this.from = from;
             this.to = to;
+            this.part = part;
         }
 
         @Override
         protected Long compute() {
-            if ((to - from) <= MainForkJoinPool.part) {
+            if ((to - from) <= part) {
                 MainForkJoinPool.setThread.add(Thread.currentThread());
-                long sum = 0L;
+                //long sum = 0L;
+                AtomicLong sum = new AtomicLong(0);
                 for (int i = from; i < to; i++) {
-                    sum += array[i];
+                    sum.addAndGet(array[i]);
+                    //sum += array[i];
                 }
-                return sum;
+                return sum.get();
+                //return sum;
             }
-            MyRecursiveTask task1 = new MyRecursiveTask(from, ((to - from) / 2) + from);
-            MyRecursiveTask task2 = new MyRecursiveTask(((to - from) / 2) + from, to);
+            MyRecursiveTask task1 = new MyRecursiveTask(from, ((to - from) / 2) + from, part);
+            MyRecursiveTask task2 = new MyRecursiveTask(((to - from) / 2) + from, to, part);
             task1.fork();
             task2.fork();
             return task1.join() + task2.join();
