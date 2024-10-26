@@ -1,4 +1,4 @@
-package multithreading;
+package multithreading.tasksConcurrent.task4;
 
 import java.util.ArrayList;
 import java.util.List;

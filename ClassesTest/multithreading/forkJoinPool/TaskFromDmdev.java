@@ -22,7 +22,7 @@ import java.util.stream.IntStream;
 
 public class TaskFromDmdev {
     // новое поле set, чтобы включать туда потоки и потом посчитать сколько было уникальных
-    private static Set<Thread> hashSet = new HashSet<>();
+    private static Set<Thread> hashSet = ConcurrentHashMap.newKeySet();
     // новое поле array для FJP
     private static int[] valuesFJP;
     // новое поле int с количство thread по задаче
@@ -37,7 +37,8 @@ public class TaskFromDmdev {
         valuesFJP = values;
 
 
-        ExecutorService threadPool = Executors.newFixedThreadPool(threads); // ставим 10 потоков
+//        ExecutorService threadPool = Executors.newFixedThreadPool(threads); // ставим 10 потоков
+        ExecutorService threadPool = new ForkJoinPool(10); // ставим 10 потоков
 //        trackTime(() -> {
 //            try {
 //                return findMaxParallel(values, threadPool);
@@ -75,21 +76,28 @@ public class TaskFromDmdev {
          *
          * Это явно не 10 потоков. Потому что использовался стандартный FJP.
          */
+        System.out.println("Number of threads: " + hashSet.size());
+        int size = 0;
         for (Thread thread : hashSet) {
             System.out.println(thread.getName());
+            size++;
         }
+        System.out.println("Real size: " + size);
+        System.out.println();
         hashSet.clear();
 
         /**
          * Теперь пытаемся решить эту же задачу, но создавая свой кастомный FJP и RecursiveTask
          */
 
-        ForkJoinPool forkJoinPool = new ForkJoinPool(threads);
+        ForkJoinPool forkJoinPool = new ForkJoinPool(8);
         MyRecursiveTaskFJP myRecursiveTask = new MyRecursiveTaskFJP(0, valuesFJP.length);
         long start = System.currentTimeMillis();
         Integer result = forkJoinPool.invoke(myRecursiveTask);
         long resultTime = System.currentTimeMillis() - start;
+        System.out.println("Task from custom ForkJoinPool and RecursiveTask");
         System.out.printf("Max: %d Time: %d%n", result, resultTime);
+        System.out.println("Number of threads: " + hashSet.size());
         for (Thread thread : hashSet) {
             System.out.println(thread.getName());
         }
@@ -117,7 +125,7 @@ public class TaskFromDmdev {
     private static int trackTime(Supplier<Integer> task) {
         long startTime = System.currentTimeMillis();
         int result = task.get();
-        System.out.println(result + ": " + (System.currentTimeMillis() - startTime));
+        System.out.println("Max: " + result + " Time: " + (System.currentTimeMillis() - startTime));
         return result;
     }
 
@@ -171,7 +179,7 @@ public class TaskFromDmdev {
 
         @Override
         protected Integer compute() {
-            if ((to - from) <= (valuesFJP.length / threads)) { // порог входа
+            if ((to - from) <= (valuesFJP.length / threads)) {
                 hashSet.add(Thread.currentThread());
                 int max = Integer.MIN_VALUE;
                 for (int i = from; i < to ; i++) {
@@ -181,9 +189,9 @@ public class TaskFromDmdev {
                 }
                 return max;
             }
-
-            MyRecursiveTaskFJP task1 = new MyRecursiveTaskFJP(from, ((to - from) / 2) + from); // делим задачу пополам
-            MyRecursiveTaskFJP task2 = new MyRecursiveTaskFJP(((to - from) / 2) + from, to);
+            int middle = ((to - from) / 2) + from;
+            MyRecursiveTaskFJP task1 = new MyRecursiveTaskFJP(from, middle);
+            MyRecursiveTaskFJP task2 = new MyRecursiveTaskFJP(middle, to);
             task2.fork();
             task1.fork();
             return Integer.max(task1.join(), task2.join());
