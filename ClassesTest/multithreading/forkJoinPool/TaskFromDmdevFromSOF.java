@@ -20,7 +20,7 @@ public class TaskFromDmdevFromSOF {
 
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
         int step = values.length / 10;
-        int max = IntStream.range(0, 10)
+        IntStream.range(0, 10)
                 .mapToObj(i -> threadPool.submit(() -> getSum(values, i * step, (i + 1) * step)))
                 .toList()
                 .stream()

@@ -1,11 +1,15 @@
 package multithreading.forkJoinPool;
 
 import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.TimeUnit;
 
 public class TaskFromDmdevForSOF2 {
+    private static Set<Thread> hashSet = ConcurrentHashMap.newKeySet();
+
     private static int[] values;
 
     public static void main(String[] args) throws InterruptedException {
@@ -19,6 +23,15 @@ public class TaskFromDmdevForSOF2 {
         MyRecursiveTaskFJP myRecursiveTask = new MyRecursiveTaskFJP(0, values.length);
         Integer max = forkJoinPool.invoke(myRecursiveTask);
         System.out.println(max);
+        int size = 0;
+        for (Thread thread : hashSet) {
+            System.out.println(thread.getName());
+            size++;
+        }
+        System.out.println("HashSet.size: " + hashSet.size());
+        System.out.println("Real size: " + size);
+        System.out.println();
+
         forkJoinPool.shutdown();
         forkJoinPool.awaitTermination(1, TimeUnit.MINUTES);
 
@@ -35,6 +48,7 @@ public class TaskFromDmdevForSOF2 {
         @Override
         protected Integer compute() {
             if ((to - from) <= (values.length / 10)) {
+                hashSet.add(Thread.currentThread());
                 int max = Integer.MIN_VALUE;
                 for (int i = from; i < to ; i++) {
                     if (values[i] > max) {
